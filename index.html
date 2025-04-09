@@ -13,6 +13,30 @@
   />
   <!-- CSS Styling -->
   <style>
+    /* CSS Variables for light and dark themes */
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #34495e;
+      --accent-color: #007bff;
+      --text-color: #333;
+      --bg-color: #f8f9fa;
+      --container-bg: #fff;
+      --muted-color: #7f8c8d;
+      --border-color: #ddd;
+      --code-bg: #f4f4f4;
+    }
+    /* Dark mode variables */
+    .dark {
+      --primary-color: #ecf0f1;
+      --secondary-color: #bdc3c7;
+      --accent-color: #3498db;
+      --text-color: #ecf0f1;
+      --bg-color: #2c3e50;
+      --container-bg: #34495e;
+      --muted-color: #95a5a6;
+      --border-color: #555;
+      --code-bg: #3c4a57;
+    }
     /* Global Styles */
     * {
       margin: 0;
@@ -22,13 +46,14 @@
     body {
       font-family: 'Roboto', sans-serif;
       line-height: 1.6;
-      color: #333;
-      background: #f8f9fa;
+      color: var(--text-color);
+      background: var(--bg-color);
       padding: 20px;
+      transition: background 0.3s ease, color 0.3s ease;
     }
     a {
       text-decoration: none;
-      color: #007bff;
+      color: var(--accent-color);
     }
     a:hover {
       text-decoration: underline;
@@ -41,58 +66,78 @@
     p {
       margin-bottom: 1em;
     }
-
     /* Container */
     .container {
       max-width: 960px;
       margin: 0 auto;
-      background: #fff;
+      background: var(--container-bg);
       padding: 40px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
-
     /* Header */
     header {
       text-align: center;
       margin-bottom: 40px;
+      position: relative;
     }
     header h1 {
-      color: #2c3e50;
+      color: var(--primary-color);
       font-size: 2.5rem;
       margin-bottom: 10px;
     }
     header p {
-      color: #7f8c8d;
+      color: var(--muted-color);
       font-size: 1.1rem;
+    }
+    /* Toggle Button */
+    .toggle-container {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .toggle-btn {
+      background: var(--accent-color);
+      border: none;
+      border-radius: 20px;
+      color: #fff;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+    }
+    .toggle-btn:hover {
+      background: darken(var(--accent-color), 10%);
     }
 
     /* Article Styles */
     article h2 {
       margin-top: 30px;
       margin-bottom: 20px;
-      color: #34495e;
+      color: var(--secondary-color);
     }
     article h3 {
       margin-top: 20px;
       margin-bottom: 15px;
-      color: #2c3e50;
+      color: var(--primary-color);
     }
     article pre {
-      background-color: #f4f4f4;
+      background-color: var(--code-bg);
       padding: 15px;
-      border-left: 4px solid #007bff;
+      border-left: 4px solid var(--accent-color);
       overflow-x: auto;
       margin-bottom: 20px;
       border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
     }
     article code {
       font-family: 'Courier New', Courier, monospace;
     }
     article blockquote {
-      border-left: 4px solid #007bff;
+      border-left: 4px solid var(--accent-color);
       padding-left: 15px;
-      color: #555;
+      color: var(--muted-color);
       margin: 15px 0;
       font-style: italic;
     }
@@ -101,11 +146,10 @@
       text-align: center;
       padding: 20px 0;
       margin-top: 40px;
-      border-top: 1px solid #ddd;
-      color: #7f8c8d;
+      border-top: 1px solid var(--border-color);
+      color: var(--muted-color);
       font-size: 0.9rem;
     }
-
     /* Responsive adjustments */
     @media (max-width: 600px) {
       body {
@@ -123,6 +167,7 @@
 <body>
   <div class="container">
     <header>
+      <button class="toggle-btn" id="toggleDarkMode">Toggle Dark Mode</button>
       <h1>Leveraging Gen AI for Understanding and Explaining Chemistry Concepts</h1>
       <p>A step-by-step tutorial for making complex chemistry simple and accessible</p>
     </header>
@@ -260,5 +305,12 @@ Markdown(rc.content.parts[0].text)</code></pre>
       <p>&copy; 2025 Your Name. All Rights Reserved.</p>
     </footer>
   </div>
+  <!-- JavaScript for Dark Mode Toggle -->
+  <script>
+    const toggleBtn = document.getElementById('toggleDarkMode');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+    });
+  </script>
 </body>
 </html>
