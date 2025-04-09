@@ -194,7 +194,7 @@
         <pre><code>!pip uninstall -qqy jupyterlab kfp  # Remove unused conflicting packages
 !pip install -qU "google-genai==1.7.0" "chromadb==0.6.3"</code></pre>
         <p>
-          Next, we import the libraries, set up the API key securely, and verify the installation.
+          Next, we import the libraries, set up the API key using Kaggle's Secrets, and verify the installation.
         </p>
         <pre><code>from google import genai
 from google.genai import types
